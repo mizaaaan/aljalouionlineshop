@@ -1,8 +1,7 @@
 # Al Jaloui Mart
 
-Single-file online store for **Al Jaloui Mart**, 6-B/B, 1st Colony, Mazar Road,
-Mirpur-1, Dhaka-1216. Customers browse products, build an order chit and send it
-over WhatsApp, or order cash on delivery. English and Arabic UI (Arabic switches the
+Single-file online store for **Al Jaloui Mart**, Doha, Qatar. Customers browse
+products, build an order chit and send it over WhatsApp, or order cash on delivery. English and Arabic UI (Arabic switches the
 page to right-to-left).
 
 Live site: **https://mizaaaan.github.io/aljalouionlineshop/**
@@ -31,6 +30,7 @@ Open `index.html` and search for:
 - `const PRODUCTS` — products, prices, categories, `rx` flag and image paths
 - `const CATEGORIES` — category filter buttons
 - `const CONTACT` — order phone number and WhatsApp number
+  (currently `+974 7473 3400` / `+974 7473 3411`, email `aljalouimedia@gmail.com`)
 - `const I18N` — every English and Arabic string (`en` / `ar` objects)
 - `AL JALOUI` — logo and brand name (header, footer)
 
