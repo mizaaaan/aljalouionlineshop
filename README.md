@@ -7,8 +7,9 @@ page to right-to-left).
 
 Live site: **https://mizaaaan.github.io/aljalouionlineshop/**
 
-`aljaloui.com` still resolves to the Hostinger WordPress site and is not connected
-to GitHub Pages, so the github.io URL above is the one serving this store.
+Every URL in the repo (canonical, Open Graph, structured data, `robots.txt`,
+`sitemap.xml`) points at that github.io address, and there is no `CNAME` file, so the
+site is self-contained and works the moment a commit lands on `main`.
 
 No build step, no dependencies — `index.html` is the whole site.
 
@@ -21,6 +22,7 @@ No build step, no dependencies — `index.html` is the whole site.
 | `og-image.png` | 1200×630 social share image (regenerate with `tools/make_og.py`) |
 | `tools/make_og.py` | Script that draws `og-image.png` |
 | `robots.txt`, `sitemap.xml` | Search engine files for the live github.io URL |
+| `404.html` | Branded not-found page GitHub Pages serves for unknown paths |
 
 ## Editing the site
 
@@ -48,12 +50,11 @@ redirects the working github.io site to another host.
 Any other static host works too: upload `index.html`, `assets/`, `og-image.png`,
 `robots.txt` and `sitemap.xml`, and serve `index.html` at `/`.
 
-### Moving aljaloui.com to Pages later (needs a DNS change)
+### Attaching a custom domain later (optional)
 
-1. Repository **Settings → Pages → Custom domain**: enter `aljaloui.com` and save
+1. Repository **Settings → Pages → Custom domain**: enter your domain and save
    (this adds a `CNAME` file holding the domain).
-2. At the DNS provider delete the Hostinger A/AAAA records for `@` and point them
-   at GitHub Pages:
+2. At your DNS provider point the apex `A` records at GitHub Pages:
 
    | Type | Name | Value |
    | --- | --- | --- |
@@ -65,8 +66,8 @@ Any other static host works too: upload `index.html`, `assets/`, `og-image.png`,
 
 3. Once DNS resolves to Pages, enable **Enforce HTTPS**.
 4. Change the absolute URLs in `<head>` (canonical, `og:url`, `og:image`, Twitter
-   image), `robots.txt` and `sitemap.xml` from the github.io URL to
-   `https://aljaloui.com/`.
+   image), the JSON-LD `url`/`image`/`logo`, `robots.txt` and `sitemap.xml` from the
+   github.io URL to your domain.
 
 ## Regenerating the share image
 

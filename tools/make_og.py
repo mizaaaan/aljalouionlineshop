@@ -123,8 +123,8 @@ def fit(text, font_path, size, maxw):
 
 lines = [
     "Essentials \u00b7 Mother & Baby \u00b7 Personal Care",
-    "Health devices \u00b7 WhatsApp ordering",
-    "Cash on delivery \u00b7 Mirpur-1, Dhaka",
+    "Health devices \u00b7 Cash on delivery",
+    "Mirpur-1, Dhaka-1216",
 ]
 y = 452
 for text in lines:
@@ -132,7 +132,8 @@ for text in lines:
     d.text((x0 + 4, y), text, font=f, fill=INK_SOF)
     y += 30
 
-d.text((x0 + 4, y + 6), "aljaloui.com", font=ImageFont.truetype(FONT_B, 22), fill=NAVY)
+order_line = "Order on WhatsApp \u00b7 +880 1830-962035"
+d.text((x0 + 4, y + 6), order_line, font=fit(order_line, FONT_B, 22, 500), fill=NAVY)
 
 out = "og-image.png"
 img.save(out, "PNG", optimize=True)
