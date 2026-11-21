@@ -1,11 +1,14 @@
-# Al Jaloui Mart — aljaloui.com
+# Al Jaloui Mart
 
 Single-file online store for **Al Jaloui Mart**, 6-B/B, 1st Colony, Mazar Road,
 Mirpur-1, Dhaka-1216. Customers browse products, build an order chit and send it
 over WhatsApp, or order cash on delivery. English and Arabic UI (Arabic switches the
 page to right-to-left).
 
-Live domain: **https://aljaloui.com**
+Live site: **https://mizaaaan.github.io/aljalouionlineshop/**
+
+`aljaloui.com` still resolves to the Hostinger WordPress site and is not connected
+to GitHub Pages, so the github.io URL above is the one serving this store.
 
 No build step, no dependencies — `index.html` is the whole site.
 
@@ -17,8 +20,7 @@ No build step, no dependencies — `index.html` is the whole site.
 | `assets/products/*.svg` | Product artwork, one file per product |
 | `og-image.png` | 1200×630 social share image (regenerate with `tools/make_og.py`) |
 | `tools/make_og.py` | Script that draws `og-image.png` |
-| `CNAME` | GitHub Pages custom domain (`aljaloui.com`) |
-| `robots.txt`, `sitemap.xml` | Search engine files for the live domain |
+| `robots.txt`, `sitemap.xml` | Search engine files for the live github.io URL |
 
 ## Editing the site
 
@@ -33,15 +35,25 @@ Open `index.html` and search for:
 Product photos: drop a new image into `assets/products/` and point that product's
 `img` field at it.
 
-## Publishing to aljaloui.com (GitHub Pages)
+## Publishing (GitHub Pages)
 
-1. Push this repository to GitHub.
-2. Repository **Settings → Pages → Build and deployment**: source *Deploy from a
-   branch*, branch `main`, folder `/ (root)`.
-3. **Settings → Pages → Custom domain**: enter `aljaloui.com` and save. The
-   `CNAME` file in this repo already holds the domain, and **Enforce HTTPS**
-   becomes available once the certificate is issued.
-4. At your DNS provider point the apex domain at GitHub Pages:
+GitHub Pages serves this repo from the `main` branch, `/ (root)`, at
+<https://mizaaaan.github.io/aljalouionlineshop/>. To publish a change, commit and
+push to `main`; Pages rebuilds in about a minute.
+
+The canonical link, Open Graph / Twitter image, `robots.txt` and `sitemap.xml` all
+use the github.io URL. There is no `CNAME` file in the repo, so Pages never
+redirects the working github.io site to another host.
+
+Any other static host works too: upload `index.html`, `assets/`, `og-image.png`,
+`robots.txt` and `sitemap.xml`, and serve `index.html` at `/`.
+
+### Moving aljaloui.com to Pages later (needs a DNS change)
+
+1. Repository **Settings → Pages → Custom domain**: enter `aljaloui.com` and save
+   (this adds a `CNAME` file holding the domain).
+2. At the DNS provider delete the Hostinger A/AAAA records for `@` and point them
+   at GitHub Pages:
 
    | Type | Name | Value |
    | --- | --- | --- |
@@ -51,16 +63,10 @@ Product photos: drop a new image into `assets/products/` and point that product'
    | A | `@` | `185.199.111.153` |
    | CNAME | `www` | `mizaaaan.github.io` |
 
-   Delete any conflicting A/AAAA/CNAME records for `@` or `www` first.
-5. Wait for DNS to propagate (usually minutes), then enable **Enforce HTTPS**.
-   If `www.aljaloui.com` is used, keep the `www` CNAME record so it resolves.
-
-Any other static host works too: upload `index.html`, `assets/`, `og-image.png`,
-`robots.txt` and `sitemap.xml`, and serve `index.html` at `/`.
-
-After the domain is live, re-check the absolute URLs in `<head>` (canonical,
-`og:url`, `og:image`, Twitter image) and in `robots.txt` / `sitemap.xml` — they
-all point at `https://aljaloui.com/`.
+3. Once DNS resolves to Pages, enable **Enforce HTTPS**.
+4. Change the absolute URLs in `<head>` (canonical, `og:url`, `og:image`, Twitter
+   image), `robots.txt` and `sitemap.xml` from the github.io URL to
+   `https://aljaloui.com/`.
 
 ## Regenerating the share image
 

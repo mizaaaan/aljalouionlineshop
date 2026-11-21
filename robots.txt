@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aljaloui.com/sitemap.xml
+Sitemap: https://mizaaaan.github.io/aljalouionlineshop/sitemap.xml
